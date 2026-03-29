@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 4.0)
-project(test_1)
+cmake_minimum_required(VERSION 4.1)
+project(SobrecargaDeOperadores)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(test_1 main.cpp)
+add_executable(SobrecargaDeOperadores main.cpp)
