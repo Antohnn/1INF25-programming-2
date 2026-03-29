@@ -3,4 +3,6 @@ project(practica_punteros)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(practica_punteros main.cpp)
+add_executable(practica_punteros main.cpp
+        funciones.cpp
+        funciones.h)
