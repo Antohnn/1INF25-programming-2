@@ -3,4 +3,6 @@ project(SobrecargaDeOperadores)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(SobrecargaDeOperadores main.cpp)
+add_executable(SobrecargaDeOperadores main.cpp
+        Estructuras.h
+        funciones.cpp)
