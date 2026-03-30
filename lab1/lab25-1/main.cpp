@@ -12,6 +12,7 @@ int main() {
     !cadena;
 
     cadena<="Valentina Gutierrez";
+    cadena<= 10;
 
     return 0;
 }
