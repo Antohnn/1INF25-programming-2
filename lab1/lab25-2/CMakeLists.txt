@@ -1,9 +1,9 @@
-cmake_minimum_required(VERSION 4.1)
-project(lab25_1)
+cmake_minimum_required(VERSION 4.2)
+project(lab25_2)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(lab25_1 main.cpp
+add_executable(lab25_2 main.cpp
         funciones.cpp
         funciones.h
         Estructuras.h)
