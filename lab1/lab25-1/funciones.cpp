@@ -48,7 +48,7 @@ bool operator==(CadenaDeCaracteres &cad,const char *cadena) {
 }
 
 bool operator==(CadenaDeCaracteres &cad1,const CadenaDeCaracteres &cad2) {
-    return cad1+=cad2.cadena;
+    return cad1==cad2.cadena;
 }
 
 bool operator<(CadenaDeCaracteres &cad,const char *cadena) {
