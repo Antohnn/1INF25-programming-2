@@ -21,17 +21,13 @@ void leerNumeroExactos(int *&numeros,int &n,const char *nombArch) {
 
     while (true) {
         archivo>>num;
+        if (archivo.eof()) break;
         buffer[n]=num;
         n++;
-        if (archivo.eof()) break;
     }
     numeros=new int[n];
 
     for (int i=0;i<n;i++) {
         numeros[i]=buffer[i];
     }
-
-
-
-
 }
