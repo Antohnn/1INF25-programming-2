@@ -120,6 +120,7 @@ void atencionDePedidos(const char *nombArch,char ***libros,int **stock,int **&pe
         cantPed++;
     }
     //3. carga de arreglos
+    cargarArreglos(pedidosClientes,pedidosLibros,pedidosAtendidos,buffPedCli,buffPedLib,buffPedAten,cantCli,cantLibEnPed,cantPed);
 }
 int buscarCliente(int **buffPedCli,int dni) {
     int *auxDni;
@@ -182,7 +183,45 @@ void modificarPedidoAtendido(int *stock,bool &seAtendio) {
         stock[1]++;
     }
 }
+void cargarArreglos(int **&pedidosClientes,char ***&pedidosLibros,bool **&pedidosAtendidos,
+    int **buffPedCli,char ***buffPedLib,bool **buffPedAten,int cantCli,int *cantLibEnPed,int cantPed) {
+    pedidosClientes=new int *[cantCli+1];
+    pedidosLibros=new char **[cantPed+2];
+    pedidosAtendidos=new bool *[cantPed];
+
+    int *auxBuffCli;
+    for (int i=0;i<cantCli;i++) {
+        auxBuffCli=buffPedCli[i];
+        pedidosClientes[i]=new int[auxBuffCli[1]+2];
+        cargaClienteNivelInterno(pedidosClientes[i],buffPedCli[i]);
+    }
+    pedidosClientes[cantCli]=nullptr;
+
+    for (int i=1;i<cantPed+1;i++) {
+        pedidosLibros[i]=new char*[cantLibEnPed[i]+1];
+        pedidosAtendidos[i]=new bool[cantLibEnPed[i]];
+        cargarPedidoNivelInterno(pedidosLibros[i],pedidosAtendidos[i],buffPedLib[i],buffPedAten[i],cantLibEnPed[i]);
+    }
+    pedidosLibros[cantPed+1]=nullptr;
+}
+void cargaClienteNivelInterno(int *pedidosClientes,int *buffPedCli) {
+    for (int i=0;i<buffPedCli[1]+2;i++) {
+        pedidosClientes[i]=buffPedCli[i];
+    }
+}
+void cargarPedidoNivelInterno(char **pedidosLibros,bool *pedidosAtendidos,char **buffPedLib,bool *buffPedAten,int n) {
+    for (int i=0;i<n;i++) {
+        pedidosLibros[i]=buffPedLib[i];
+        pedidosAtendidos[i]=buffPedAten[i];
+    }
+}
 //reporte Pedidos
 void reporteDeEntregaDePedidos(const char *nombArch,int **pedidosClientes,char ***pedidosLibros,bool **pedidosAtendidos) {
-
+    ofstream archRep(nombArch,ios::out);
+    if (not archRep.is_open()) {
+        cout<<"ERROR AL ABRIR EL ARCHIVO "<<nombArch<<endl;
+        exit(1);
+    }
+    archRep<<fixed<<setprecision(2);
+    
 }
