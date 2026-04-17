@@ -1,0 +1,14 @@
+[
+{
+  "directory": "C:/Users/anton/Documentos/GitHub/1INF25-labs/lab1/lab25-2/cmake-build-debug",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.4\\bin\\mingw\\bin\\G__~1.EXE -g -std=gnu++20 -fdiagnostics-color=always -o CMakeFiles\\lab25_2.dir\\main.cpp.obj -c C:\\Users\\anton\\Documentos\\GitHub\\1INF25-labs\\lab1\\lab25-2\\main.cpp",
+  "file": "C:/Users/anton/Documentos/GitHub/1INF25-labs/lab1/lab25-2/main.cpp",
+  "output": "C:/Users/anton/Documentos/GitHub/1INF25-labs/lab1/lab25-2/cmake-build-debug/CMakeFiles/lab25_2.dir/main.cpp.obj"
+},
+{
+  "directory": "C:/Users/anton/Documentos/GitHub/1INF25-labs/lab1/lab25-2/cmake-build-debug",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.4\\bin\\mingw\\bin\\G__~1.EXE -g -std=gnu++20 -fdiagnostics-color=always -o CMakeFiles\\lab25_2.dir\\funciones.cpp.obj -c C:\\Users\\anton\\Documentos\\GitHub\\1INF25-labs\\lab1\\lab25-2\\funciones.cpp",
+  "file": "C:/Users/anton/Documentos/GitHub/1INF25-labs/lab1/lab25-2/funciones.cpp",
+  "output": "C:/Users/anton/Documentos/GitHub/1INF25-labs/lab1/lab25-2/cmake-build-debug/CMakeFiles/lab25_2.dir/funciones.cpp.obj"
+}
+]

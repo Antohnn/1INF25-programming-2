@@ -1,0 +1,3 @@
+C:/Users/anton/Documentos/GitHub/1INF25-labs/lab1/lab25-2/cmake-build-debug/CMakeFiles/lab25_2.dir
+C:/Users/anton/Documentos/GitHub/1INF25-labs/lab1/lab25-2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/anton/Documentos/GitHub/1INF25-labs/lab1/lab25-2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
