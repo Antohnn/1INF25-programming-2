@@ -67,6 +67,10 @@ void cargarStreamers(const char* nombArch,char ***&streamers,int **&fechasPromed
             incrementarFechaPromedio(fechasPromedios,numDat,capacidad);
             incrementarFechaPromedioSeg(tiemposRepSegidores,numDat,capacidad);
         }
+        streamers[numDat]=streamer;
+        fechasPromedios[numDat]=fechaPromedio;
+        tiemposRepSegidores[numDat]=tiempoRepSegidor;
+        numDat++;
     }
 }
 void incrementarStreamer(char ***&streamers,int numDat,int capacidad) {
@@ -109,15 +113,23 @@ void incrementarFechaPromedioSeg(long long **&tiemposRepSegidores,int numDat,int
     }
 }
 bool leerStreamers(ifstream &archStream,char **&streamer,int *&fechaPromedio,long long *&tiempoRepSegidor) {
-    char *codStreamer,*categoria;
-    int fechaCreacion,fechaUlt,promedioSpec,seguidores;
-    long long tiempoTotal;
+    char *codStreamer,*categoria,c;
+    int fechaCreacion,fechaUlt,promedioSpec;
+    long long tiempoTotal,seguidores;
 
     codStreamer=leerCadenaExacta(archStream,',');
     if (archStream.eof()) return false;
     fechaCreacion=leerFecha(archStream);
     archStream.ignore();
-    fec
+    fechaUlt=leerFecha(archStream);
+    archStream.ignore();
+    archStream>>tiempoTotal>>c>>promedioSpec>>c>>seguidores;
+    categoria=leerCadenaExacta(archStream,'\n');
+
+    streamer=new char*[2]{codStreamer,categoria};
+    fechaPromedio=new int[3]{fechaCreacion,fechaUlt,promedioSpec};
+    tiempoRepSegidor=new long long[2]{tiempoTotal,seguidores};
+    return true;
 }
 int leerFecha(ifstream &archStream) {
     int dia,mes,anio,fecha;
@@ -125,8 +137,115 @@ int leerFecha(ifstream &archStream) {
 
     archStream>>dia>>c>>mes>>c>>anio;
     fecha=anio+10000+mes*100+dia;
-
     return fecha;
+}
+//cargarComentarios
+void cargarComentarios(const char *nombArch,char ***&comentarios,char ***&etiquetas) {
+    ifstream archCom(nombArch,ios::in);
+    char **comentario,**etiquetaComent;
+    int capacidad=0,numDat=0;
+    comentarios=nullptr;
+    etiquetas=nullptr;
+    while (leerComentarios(archCom,comentario,etiquetaComent)) {
+        if (capacidad==numDat) {
+            capacidad+=5;
+            incrementarComentarios(comentarios,numDat,capacidad);
+            incrementarEtiquetas(etiquetas,numDat,capacidad);
+        }
+        comentarios[numDat]=comentario;
+        etiquetas[numDat]=etiquetaComent;
+        numDat++;
+    }
+}
+void incrementarComentarios(char ***&comentarios,int numDat,int capacidad) {
+    char ***aux;
+    if (capacidad==numDat) {
+        comentarios=new char**[capacidad+1]{};
+    }else {
+        aux=new char**[capacidad+1]{};
+        for (int i=0;i<numDat;i++) {
+            aux[i]=comentarios[i];
+        }
+        delete[]comentarios;
+        comentarios=aux;
+    }
+}
+void incrementarEtiquetas(char ***&etiquetas,int numDat,int capacidad) {
+    char ***aux;
+    if (capacidad==numDat) {
+        etiquetas=new char**[capacidad+1]{};
+    }else {
+        aux=new char**[capacidad+1]{};
+        for (int i=0;i<numDat;i++) {
+            aux[i]=etiquetas[i];
+        }
+        delete[]etiquetas;
+        etiquetas=aux;
+    }
+}
+bool leerComentarios(ifstream &archCom,char **&comentario,char **&etiquetaComent) {
+    char *codUsuario,*texto,*textoParte2,*textoCompleto;
+
+    codUsuario=leerCadenaExacta(archCom,',');
+    if (archCom.eof())return false;
+    texto=leerCadenaExacta(archCom,'[');
+    cargarEtiquetas(archCom,etiquetaComent);
+    if (archCom.peek() != '\n') {
+        textoParte2=leerCadenaExacta(archCom,'\n');
+        int sumaCar=strlen(textoParte2)+strlen(texto)+1;
+        textoCompleto=new char[sumaCar];
+        strcpy(textoCompleto,texto);
+        strcat(textoCompleto,textoParte2);
+        delete[]texto;
+        delete[]textoParte2;
+
+        texto=textoCompleto;
+    }
+
+    comentario=new char*[2]{codUsuario,texto};
+
+    return true;
+}
+void cargarEtiquetas(ifstream &archCom,char **&etiquetaComent) {
+    char *buffer[10];
+    int num=0;
+    char *etiqueta;
+    while (leerEtiqueta(archCom,etiqueta)) {
+        buffer[num]=etiqueta;
+        num++;
+    }
+    etiquetaComent=new char*[num+1]{};
+    for (int i=0;i<num;i++) {
+        etiquetaComent[i]=buffer[i];
+    }
+}
+bool leerEtiqueta(ifstream &archCom,char *&etiqueta) {
+    char buffer[20];
+    int num=0;
+    if (archCom.peek()==']') {
+        archCom.get(); //consumir
+        return false;
+    }
+    while (archCom.peek()!=' ' and archCom.peek()!=']') {
+        buffer[num]=archCom.get();
+        num++;
+    }
+    buffer[num]='\0';
+
+    etiqueta=new char[num+1];
+    strcpy(etiqueta,buffer);
+
+    if (archCom.peek()==' ') {
+        archCom.get();
+    }
+    return true;
+}
+//imprimirReporte
+void imprimirReporte(const char *nombArch,char ***categorias,char ***streamers,int **fechasPromedios,long long **tiemposRepSegidores,
+    char ***comentarios,char ***etiquetas) {
+    for (int i=0;categorias[i];i++) {
+        char **nombStreamer=categorias[i];
+    }
 }
 //aux
 char* leerCadenaExacta(ifstream &arch,char delim) {

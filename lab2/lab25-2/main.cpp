@@ -17,9 +17,11 @@ int main() {
 
     char*** comentarios;
     char*** etiquetas;
-    // cargarComentarios("Archivos/comentarios.csv",comentarios,etiquetas);
-    //
-    // imprimirReporte("Archivos/reporte.txt",categorias,streamers,fechasPromedios,tiemposRepSegidores,comentarios,etiquetas);
+    //cargarComentarios
+    cargarComentarios("Archivos/comentarios.csv",comentarios,etiquetas);
+
+
+    imprimirReporte("Archivos/reporte.txt",categorias,streamers,fechasPromedios,tiemposRepSegidores,comentarios,etiquetas);
 
 
 
