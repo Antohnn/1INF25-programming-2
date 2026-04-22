@@ -15,6 +15,7 @@ void cargarHablantes(ifstream &archComent,char *&emisorComent,char *&recepComent
 //reporte simple
 void reporteSimple(void *&streamers,void *&comentarios);
 void imprimirStreamer(ofstream &archReporteStreamer,const void *regStreamers);
+void imprimirComentario(ofstream &archReporteComentario,const void*regComentarios);
 //aux
 void abrirArch(const char *nombArch,ifstream &arch);
 void abrirOut(const char *nombArch,ofstream &archRep);

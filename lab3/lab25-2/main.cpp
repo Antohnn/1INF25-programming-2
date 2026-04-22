@@ -10,6 +10,7 @@ int main() {
     cargarStreamers(streamers);
     cargarComentarios(comentarios);
     reporteSimple(streamers,comentarios);
+    actualizacomentarios(streamers,comentarios);
 
     return 0;
 }
