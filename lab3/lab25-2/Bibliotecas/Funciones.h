@@ -4,7 +4,8 @@
 
 #ifndef LAB25_2_FUNCIONES_H
 #define LAB25_2_FUNCIONES_H
-//cargarPaciente
+#include <fstream>
+//cargarStreamer
 void cargarStreamers(void *&streamers);
 bool leerStreamer(ifstream &archStreamer,void *&streamer);
 void incrementarRegistro(void **&registros,int num,int &capacidad) ;
@@ -16,6 +17,17 @@ void cargarHablantes(ifstream &archComent,char *&emisorComent,char *&recepComent
 void reporteSimple(void *&streamers,void *&comentarios);
 void imprimirStreamer(ofstream &archReporteStreamer,const void *regStreamers);
 void imprimirComentario(ofstream &archReporteComentario,const void*regComentarios);
+//actualiza comentarios
+void actualizacomentarios(void *&streamers,void *&comentarios) ;
+void cargarComentario(void *regStreamers,void **regComentarios);
+void crearComentarioNuevo(void **datoComentarios,void *&unComentStreamer);
+void copiarCadena(char *cad,void *&nuevo) ;
+//reporteFinal
+void imprimeStreamer(const void *streamers);
+void imprimirCaracter(ofstream &archRep,char car,int tam) ;
+void imprimirCuenta(const void *regStreamers,ofstream &archRep);
+void imprimirComentarioStreamer(const void *regComentStreamer,ofstream &archRep);
+bool tieneComentarios(const void *regStreamers);
 //aux
 void abrirArch(const char *nombArch,ifstream &arch);
 void abrirOut(const char *nombArch,ofstream &archRep);

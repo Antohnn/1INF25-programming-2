@@ -29,7 +29,7 @@ void cargarStreamers(void *&streamers) {
     else registros[num]=nullptr;
     streamers=registros;
 }
-//lectura del paciente
+//lectura del streamer
 bool leerStreamer(ifstream &archStreamer,void *&streamer) {
     char *nombStreamer,*categoria,c;
     long long tiempoTot,segStreamer;
@@ -148,24 +148,97 @@ void imprimirComentario(ofstream &archReporteComentario,const void*regComentario
 void actualizacomentarios(void *&streamers,void *&comentarios) {
     void **regStreamers=(void **)streamers;
     void **regComentarios=(void **)comentarios;
-    char *nombStreamer;
-    int posComentario;
 
     for (int i=0;regStreamers[i]!=nullptr; i++) {
-        void** datoStreamer=(void**)regStreamers[i];
-        nombStreamer=(char *)datoStreamer[streamerCuenta];
-        posComentario=buscarComentario(regComentarios,nombStreamer);
+        cargarComentario(regStreamers[i],regComentarios);
     }
 
 
 }
-void buscarComentario(void **regComentarios,char *nombStreamer) {
+void cargarComentario(void *regStreamers,void **regComentarios) {
+    void **datoStreamer=(void **)regStreamers;
+    char *nombStreamer=(char *)datoStreamer[streamerCuenta];
+    int num=0,capacidad=0;
+    void **listaComentarios=nullptr;
+
     for (int i=0;regComentarios[i]!=nullptr; i++) {
         void **datoComentarios=(void **)regComentarios[i];
-        
+        char *datoEmisor=(char *)datoComentarios[comentEmi];
+        void *unComentStreamer;
+        if (strcmp(datoEmisor,nombStreamer)==0) {
+            if (num==capacidad) {
+                incrementarRegistro(listaComentarios,num,capacidad);
+            }
+            crearComentarioNuevo(datoComentarios,unComentStreamer);
+            listaComentarios[num++]=unComentStreamer;
+        }
+    }
+    if (listaComentarios==nullptr) listaComentarios=new void*[1]{};
+    else listaComentarios[num]=nullptr;
+    datoStreamer[streamerComent]=listaComentarios;
+}
+void crearComentarioNuevo(void **datoComentarios,void *&unComentStreamer) {
+    void **nuevo=new void*[2]{};
+
+    copiarCadena((char *)datoComentarios[comentRecep],nuevo[0]);
+    copiarCadena((char *)datoComentarios[comentText],nuevo[1]);
+
+    unComentStreamer=nuevo;
+}
+void copiarCadena(char *cad,void *&nuevo) {
+    char *cadena;
+    cadena=new char[strlen(cad)+1];
+    strcpy(cadena,cad);
+    nuevo=cadena;
+}
+//reporteFinal
+void imprimeStreamer(const void *streamers) {
+    ofstream archRep;
+    abrirOut("ArchivosDeReporte/Reporte.txt",archRep);
+    const void **regStreamers=(const void**)streamers;
+    for (int i=0;regStreamers[i];i++) {
+        if (tieneComentarios(regStreamers[i])) {
+            imprimirCaracter(archRep,'=',160);
+            imprimirCuenta(regStreamers[i],archRep);
+        }
+
+    }
+}
+void imprimirCaracter(ofstream &archRep,char car,int tam) {
+    for (int i=0;i<tam;i++) {
+        archRep<<car;
+    }
+    archRep<<endl;
+}
+void imprimirCuenta(const void *regStreamers,ofstream &archRep) {
+    const void **datoStreamer=(const void **)regStreamers;
+    const char* nombStreamer=(const char *)datoStreamer[streamerCuenta];
+    const long long seguidores=*(const long long*)datoStreamer[streamerSeg];
+    archRep<<"Cuenta"<<setw(30)<<"Seguidores"<<endl;
+    archRep<<left<<setw(20)<<nombStreamer<<setw(15)<<right<<seguidores<<endl;
+    imprimirCaracter(archRep,'-',160);
+    archRep<<"Comentarios emitidos: "<<endl;
+    imprimirCaracter(archRep,'-',160);
+    archRep<<"Receptor"<<setw(30)<<"Texto"<<endl;
+    imprimirCaracter(archRep,'-',160);
+    const void** regComentStreamer=(const void**)datoStreamer[streamerComent];
+    for (int i=0;regComentStreamer[i];i++) {
+        imprimirComentarioStreamer(regComentStreamer[i],archRep);
     }
 
+}
+void imprimirComentarioStreamer(const void *regComentStreamer,ofstream &archRep) {
+    const void **datoComentStreamer=(const void**)regComentStreamer;
+    const char *receptor=(const char *)datoComentStreamer[0];
+    const char *texto=(const char *)datoComentStreamer[1];
 
+    archRep<<left<<setw(30)<<receptor<<setw(60)<<texto<<endl;
+}
+bool tieneComentarios(const void *regStreamers) {
+    const void **datoStreamer=(const void**)regStreamers;
+    const void **regComentStreamer=(const void**)datoStreamer[streamerComent];
+    if (regComentStreamer[0]==nullptr) return false;
+    return true;
 }
 //aux
 void abrirArch(const char *nombArch,ifstream &arch) {

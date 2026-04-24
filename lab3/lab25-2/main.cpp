@@ -11,6 +11,7 @@ int main() {
     cargarComentarios(comentarios);
     reporteSimple(streamers,comentarios);
     actualizacomentarios(streamers,comentarios);
+    imprimeStreamer(streamers);
 
     return 0;
 }
