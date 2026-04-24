@@ -139,7 +139,6 @@ void imprimirBebida(const void *regBebidas,ofstream &archRep) {
 void actualizarMenu(const char *nombArch,void *&inventario,void *&menu) {
     ifstream arch;
     abrirIn(nombArch,arch);
-    void **regMenu=(void **)menu;
     void *insumoMenu;
     char *codBebida;
     while (leerInsumoBebida(arch,insumoMenu,inventario,codBebida)) {
