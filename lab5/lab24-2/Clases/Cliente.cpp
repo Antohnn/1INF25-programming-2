@@ -4,6 +4,7 @@
 #include <cstring>
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 
 using namespace std;
 
@@ -71,6 +72,9 @@ Cliente::~Cliente() {
     delete[] nombre;
     delete[] distrito;
 }
+void Cliente::agregarMonto(double monto) {
+    totalPagado+=monto;
+}
 ifstream& operator>> (ifstream &arch, Cliente &cliente) {
     int dni;
     char *nombre,*distrito,hayDescuento,c;
@@ -95,6 +99,12 @@ ifstream& operator>> (ifstream &arch, Cliente &cliente) {
     delete[] nombre;
     delete[] distrito;
 
+    return arch;
+}
+ofstream &operator<<(ofstream &arch, Cliente &cliente) {
+    arch<<setprecision(2)<<fixed;
+    arch<<cliente.getDni()<<left<<setw(60)<<cliente.getNombre()<<setw(40)<<cliente.getDistrito()<<
+        right<<setw(20)<<cliente.getDescuento()<<'%'<<cliente.getTotalPagado()<<endl;
     return arch;
 }
 

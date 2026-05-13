@@ -18,6 +18,7 @@ class Plato {
     double totalEsperado;
     double totalBruto;
     double totalNeto;
+
     public:
     Plato();
     Plato(const Plato &);
@@ -45,11 +46,16 @@ class Plato {
     void setTotalNeto(double totalNeto);
     double getTotalNeto() const;
 
+    int atenderPedido(int );
+    void sumarTotalEsperado(double ) ;
+    void sumarTotalBruto(double );
+    void sumarTotalNeto(double );
 
     Plato& operator=(const Plato &);
     ~Plato();
 };
 ifstream &operator>> (ifstream &, Plato &);
+ofstream &operator<< (ofstream &, Plato &);
 
 
 #endif //LAB24_2_PLATO_H

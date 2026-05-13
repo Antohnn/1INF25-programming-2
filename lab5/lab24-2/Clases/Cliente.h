@@ -13,6 +13,7 @@ class Cliente {
     char *distrito;
     double descuento;
     double totalPagado;
+
     public:
     //constructor de inicializacion y constructor de copia
     Cliente();
@@ -30,6 +31,8 @@ class Cliente {
     void setTotalPagado(double totalPagado);
     double getTotalPagado() const;
 
+    void agregarMonto(double monto);
+
     //sobrecarga del operador para la asignacion
     Cliente& operator=(const Cliente &);
     //destructor de clase
@@ -37,6 +40,7 @@ class Cliente {
 };
 
 ifstream& operator>> (ifstream &, Cliente &);
+ofstream &operator<<(ofstream &, Cliente &);
 
 
 #endif //LAB24_2_CLIENTE_H

@@ -4,6 +4,7 @@
 #include <cstring>
 #include <fstream>
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -121,6 +122,29 @@ Plato::~Plato() {
     delete [] nombre;
     delete [] categoria;
 }
+int Plato::atenderPedido(int cantPlatoPedido) {
+    int disponibles=preparados-atendidos;
+    int cantidadAtendida;
+
+    if (cantPlatoPedido<=disponibles) {
+        cantidadAtendida=cantPlatoPedido;
+    }else {
+        cantidadAtendida=disponibles;
+    }
+    atendidos+=cantidadAtendida;
+    noAtendidos+=cantPlatoPedido-cantidadAtendida;
+
+    return cantidadAtendida;
+}
+void Plato::sumarTotalEsperado(double monto) {
+    totalEsperado+=monto;
+}
+void Plato::sumarTotalBruto(double monto) {
+    totalBruto+=monto;
+}
+void Plato::sumarTotalNeto(double monto) {
+    totalNeto+=monto;
+}
 ifstream &operator>> (ifstream &arch, Plato &plato) {
     char *codPlato,*nombPlato,*categoriaPlato,c;
     int numeroPlato;
@@ -134,5 +158,33 @@ ifstream &operator>> (ifstream &arch, Plato &plato) {
     arch>>numeroPlato;
     if (arch.get()!='\n') {
         arch>>descuentoPlato>>c;
-    }
+    }else descuentoPlato=0;
+    arch.get();
+
+    plato.setCodigo(codPlato);
+    plato.setNombre(nombPlato);
+    plato.setPrecio(precioPlato);
+    plato.setCategoria(categoriaPlato);
+    plato.setPreparados(numeroPlato);
+    plato.setDescuento(descuentoPlato);
+    plato.setAtendidos(0);
+    plato.setNoAtendidos(0);
+    plato.setTotalEsperado(0);
+    plato.setTotalBruto(0);
+    plato.setTotalNeto(0);
+
+
+    delete[] codPlato;
+    delete[] nombPlato;
+    delete[] categoriaPlato;
+
+    return arch;
+}
+ofstream &operator<< (ofstream &arch, Plato &plato) {
+    arch<<setprecision(2)<<fixed;
+    arch<<left<<setw(10)<<plato.getCodigo()<<setw(60)<<plato.getNombre()<<setw(40)<<plato.getPrecio()<<setw(25)
+        <<plato.getCategoria()<<right<<setw(10)<<plato.getPreparados()<<setw(7)<<plato.getDescuento()<<'%'
+        <<setw(10)<<plato.getAtendidos()<<setw(10)<<plato.getNoAtendidos()<<setw(7)<<plato.getTotalEsperado()
+        <<plato.getTotalBruto()<<setw(7)<<plato.getTotalNeto()<<endl;
+    return arch;
 }
