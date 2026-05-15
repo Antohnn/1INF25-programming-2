@@ -15,6 +15,8 @@ class Empresa {
     class Multa multas[100];
     int numMultas;
 
+
+
 public:
     Empresa();
     ~Empresa();
@@ -30,9 +32,12 @@ public:
 
     void setPlacaI(const char *,int i);
     void getPlacaI(char *,int i)const;
+    void imprime(ofstream &);
+    Empresa& operator+= (Multa& );
 };
 
 ifstream &operator>>(ifstream &,Empresa &);
+ofstream &operator<<(ofstream &,Empresa &);
 
 
 #endif //LAB25_1_EMPRESA_H

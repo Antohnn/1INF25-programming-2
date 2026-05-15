@@ -32,6 +32,7 @@ public:
 };
 
 ifstream &operator>> (ifstream &, Infraccion &);
+ofstream &operator<< (ofstream &, Infraccion &);
 
 
 #endif //LAB25_1_INFRACCION_H

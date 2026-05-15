@@ -134,7 +134,7 @@ void Restaurante::actualizarDatos(int idCliente,int idPlato,int cantPlatoPedido)
 
 }
 
-int Restaurante::buscarClientePorDni(int dniCliente) const {
+int Restaurante::   buscarClientePorDni(int dniCliente) const {
     for (int i=0;i<cantidadClientes;i++) {
         if (clientes[i].getDni()==dniCliente) {
             return i;

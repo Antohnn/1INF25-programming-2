@@ -85,16 +85,22 @@ ifstream &operator>> (ifstream &arch, Multa &multa) {
     if (arch.get()!='\n') {
         arch>>hayPago>>c>>ddP>>c>>mmP>>c>>aaP;
         fechaPago=aaP*10000+mmP*100+ddP;
-    }fechaPago=0;
+    }else fechaPago=0;
     fechaInfra=aa*10000+mm*100+dd;
 
     multa.set_placa(placa);
     multa.set_fecha_de_infraccion(fechaInfra);
     multa.set_fecha_de_pago(fechaPago);
     multa.set_codigo_infraccion(codInfra);
-    multa.set_multa(multa);
 
-
+    return arch;
+}
+ofstream &operator<< (ofstream &arch, Multa &multa) {
+    char placa[9];
+    multa.get_placa(placa);
+    arch<<fixed<<setprecision(2);
+    arch<<left<<placa<<setw(10)<<multa.get_fecha_de_infraccion()<<setw(10)<<multa.get_codigo_infraccion()
+        <<setw(10)<<multa.get_multa()<<setw(10)<<multa.get_fecha_de_pago();
 
     return arch;
 }

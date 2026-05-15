@@ -13,9 +13,20 @@ class MinisterioDeTransporte {
     int numInf;
     class Empresa empresas[50];
     int numEmp;
+    double buscarMultaEnInfra(int );
+    int buscarEmpresaPorPlaca(char *);
+    void imprimeHeader(ofstream &);
+    void imprimirCaracter(ofstream &,int n,char car);
+    void imprimirHeaderEmp(ofstream &);
 public:
     MinisterioDeTransporte();
     ~MinisterioDeTransporte();
+
+
+    MinisterioDeTransporte& operator<(const char*);
+    MinisterioDeTransporte& operator<=(const char*);
+    MinisterioDeTransporte& operator<<=(const char*);
+    MinisterioDeTransporte& operator>>(const char*);
 };
 
 

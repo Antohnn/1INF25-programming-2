@@ -4,8 +4,8 @@
 #include <cstring>
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 
-#include "FuncionesAux.h"
 
 using namespace std;
 
@@ -88,6 +88,15 @@ ifstream &operator>> (ifstream &arch, Infraccion &infraccion) {
     infraccion.set_multa(multaInfra);
 
 
+    return arch;
+}
+ofstream &operator<< (ofstream &arch, Infraccion &infra) {
+    char grav[30],descr[300];
+    infra.get_gravedad(grav);
+    infra.get_descripcion(descr);
+    
+    arch<<setprecision(2)<<fixed;
+    arch<<infra.get_codigo()<<setw(10)<<infra.get_multa()<<left<<setw(20)<<grav<<setw(160)<<descr<<endl;
     return arch;
 }
 

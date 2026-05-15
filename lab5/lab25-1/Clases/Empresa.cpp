@@ -4,8 +4,8 @@
 #include <cstring>
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 
-#include "FuncionesAux.h"
 
 using namespace std;
 
@@ -67,15 +67,30 @@ void Empresa::getPlacaI(char *placa,int i)const  {
     if (placas[i]==nullptr) placa[0]='\0';
     else strcpy(placa,placas[i]);
 }
+Empresa& Empresa::operator+= (Multa& multa) {
+    multas[numMultas]=multa;
+    numMultas++;
+    return *this;
+}
+void Empresa::imprime(ofstream &arch) {
+    arch<<dni<<" "<<left<<setw(60)<<nombre<<' ';
+    for (int i=0;i<numPlacas;i++) {
+        arch<<placas[i]<<' ';
+    }
+    arch<<endl;
+    for (int i=0;i<numMultas;i++) {
+        arch<<multas[i]<<endl;
+    }
+}
 //sobrecarga
 ifstream &operator>>(ifstream &arch,Empresa &empresa) {
     int dniEmpresa,n=0;
-    char *nombDueEmp,placa[9],c;
+    char nombDueEmp[60],placa[9],c;
 
     arch>>dniEmpresa;
     if (arch.eof())return arch;
     arch>>c;
-    nombDueEmp=leerCadenaExacta(arch,',');
+    arch.getline(nombDueEmp,60,',');
     empresa.set_dni(dniEmpresa);
     empresa.set_nombre(nombDueEmp);
     empresa.set_num_placas(0);
@@ -88,5 +103,9 @@ ifstream &operator>>(ifstream &arch,Empresa &empresa) {
     }
     empresa.set_num_placas(n);
 
+    return arch;
+}
+ofstream &operator<<(ofstream &arch,Empresa &empresa) {
+    empresa.imprime(arch);
     return arch;
 }

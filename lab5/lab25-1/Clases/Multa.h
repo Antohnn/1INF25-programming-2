@@ -5,13 +5,14 @@
 #ifndef LAB25_1_MULTA_H
 #define LAB25_1_MULTA_H
 
-
+using namespace std;
 class Multa {
     char *placa;
     int fechaDeInfraccion;
     int fechaDePago;
     int codigoInfraccion;
     double multa;
+
 public:
     Multa();
     Multa(const Multa &);
@@ -31,5 +32,6 @@ public:
     Multa &operator=(const Multa &);
 };
 ifstream &operator>> (ifstream &, Multa &);
+ofstream &operator<< (ofstream &, Multa &);
 
 #endif //LAB25_1_MULTA_H
