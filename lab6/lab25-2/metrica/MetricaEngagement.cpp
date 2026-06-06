@@ -13,7 +13,7 @@ MetricaEngagement::MetricaEngagement() {
     usuarios_unicos_chat=0;
     clips_generados=0;
 }
-MetricaEngagement::MetricaEngagement(const MetricaEngagement&origin) {
+MetricaEngagement::MetricaEngagement(const MetricaEngagement&origin):MetricaEngagement() {
     *this=origin;
 }
 
@@ -51,6 +51,7 @@ ifstream& MetricaEngagement::leer(ifstream &arch) {
     this->set_mensajes_chat(msjChat);
     this->set_usuarios_unicos_chat(usuarioUnico);
     this->set_clips_generados(clipGenerado);
+    arch.ignore(200,'\n');
 
     return arch;
 }

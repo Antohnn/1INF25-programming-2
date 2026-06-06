@@ -11,4 +11,13 @@ add_executable(lab25_2 main.cpp
         Metrica/MetricaEngagement.cpp
         Metrica/MetricaEngagement.h
         Metrica/MetricaCalidad.cpp
-        Metrica/MetricaCalidad.h)
+        Metrica/MetricaCalidad.h
+        Streamer/Streamer.cpp
+        Streamer/Streamer.h
+        Streamer/StreamerGratuito.cpp
+        Streamer/StreamerGratuito.h
+        streamer/StreamerPago.cpp
+        streamer/StreamerPago.h
+        streamer/StreamerPago.cpp
+        Bibliotecas/GestorStreamers.cpp
+        Bibliotecas/GestorStreamers.h)

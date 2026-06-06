@@ -8,7 +8,7 @@
 
 using namespace std;
 
-#include "../Metrica/Metrica.h"
+#include "../metrica/Metrica.h"
 
 Metrica::Metrica() {
     id=0;
@@ -128,8 +128,6 @@ Metrica& Metrica::operator=(const Metrica &origin) {
 
 Metrica::~Metrica() {
     delete [] descripcion;
-
-    cout<<"se utilizo el operador de destruccion"<<endl;
 }
 
 //sobrecargas de operadores

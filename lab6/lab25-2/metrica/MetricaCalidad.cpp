@@ -15,7 +15,7 @@ MetricaCalidad::MetricaCalidad() {
     porcentaje_frames_perdidos=0;
     fps_promedio=0;
 }
-MetricaCalidad::MetricaCalidad(const MetricaCalidad &origin) {
+MetricaCalidad::MetricaCalidad(const MetricaCalidad &origin):MetricaCalidad() {
     *this=origin;
 }
 
@@ -55,6 +55,7 @@ ifstream& MetricaCalidad::leer(ifstream &arch) {
     this->set_bitrate_promedio_kbps(bitratePromedio);
     this->set_porcentaje_frames_perdidos(porcentajeFrames);
     this->set_fps_promedio(fpsPromedio);
+    arch.ignore(200,'\n');
 
     return arch;
 }

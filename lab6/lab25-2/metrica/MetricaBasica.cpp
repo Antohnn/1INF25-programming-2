@@ -46,6 +46,7 @@ ifstream& MetricaBasica::leer(ifstream &arch) {
 
     this->set_horas_transmitidas(horasTransmitidas);
     this->set_espectadores_promedio(espectadoresPromedio);
+    arch.ignore(200,'\n');
 
     return arch;
 }
