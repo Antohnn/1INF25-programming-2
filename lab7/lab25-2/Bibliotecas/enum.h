@@ -1,0 +1,16 @@
+//
+// Created by ANTONIO on 11/06/2026.
+//
+
+#ifndef LAB25_2_ENUMMETRICAS_H
+#define LAB25_2_ENUMMETRICAS_H
+enum TipoMetrica {
+    METRICA_BASICA,
+    METRICA_ENGAGE,
+    METRICA_CALIDAD
+};
+enum TipoStreamer {
+    STREAMER_GRATIS,
+    STREAMER_PAGO
+};
+#endif //LAB25_2_ENUMMETRICAS_H
