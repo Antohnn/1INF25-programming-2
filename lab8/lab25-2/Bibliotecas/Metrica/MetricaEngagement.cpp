@@ -36,6 +36,10 @@ void MetricaEngagement::set_clips_generados(int clips_generados) {
     this->clips_generados = clips_generados;
 }
 //
+TipoMetrica MetricaEngagement::getTipo() const {
+    return ENGAGEMENT;
+}
+//
 ifstream& MetricaEngagement::leer(ifstream &arch) {
     if (!Metrica::leer(arch)) {
         return arch;

@@ -9,10 +9,20 @@
 
 class Lista {
     Nodo *listaDoblementeLigada;
+
+    bool comprobarOrden(Metrica *,Metrica *) ;
 public:
     Lista();
-    void insertar(Nodo *,Metrica *);
+    void insertar(Metrica *);
     bool estaVacia() const;
+    void imprimir(ofstream &);
+    void eliminarNodo(Nodo *);
+    void eliminarExpiradas();
+    void eliminarLista();
+
+    //destructor
+    ~Lista();
+
 };
 
 

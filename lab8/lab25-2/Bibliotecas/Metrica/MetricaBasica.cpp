@@ -27,7 +27,10 @@ int MetricaBasica::get_espectadores_promedio() const {
 void MetricaBasica::set_espectadores_promedio(int espectadores_promedio) {
     this->espectadores_promedio = espectadores_promedio;
 }
-
+//
+TipoMetrica MetricaBasica::getTipo() const {
+    return BASICA;
+}
 //
 ifstream& MetricaBasica::leer(ifstream &arch) {
     if (!Metrica::leer(arch)) {

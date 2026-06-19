@@ -20,6 +20,8 @@ public:
     int get_espectadores_promedio() const;
     void set_espectadores_promedio(int espectadores_promedio);
     //
+    TipoMetrica getTipo() const override;
+    //
     ifstream& leer(ifstream &) override;
     ofstream& imprimir(ofstream &) const override;
     //

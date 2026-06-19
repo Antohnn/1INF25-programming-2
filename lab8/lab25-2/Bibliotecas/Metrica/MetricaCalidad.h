@@ -24,6 +24,8 @@ public:
     int get_fps_promedio() const;
     void set_fps_promedio(int fps_promedio);
     //
+    TipoMetrica getTipo() const override;
+    //
     ifstream& leer(ifstream &) override;
     ofstream& imprimir(ofstream &) const override;
     //

@@ -15,4 +15,7 @@ add_executable(lab25_2 main.cpp
         Bibliotecas/Nodo.cpp
         Bibliotecas/Nodo.h
         Bibliotecas/Lista.cpp
-        Bibliotecas/Lista.h)
+        Bibliotecas/Lista.h
+        Bibliotecas/Metrica/enum.h
+        Bibliotecas/AdministrarMetricas.cpp
+        Bibliotecas/AdministrarMetricas.h)

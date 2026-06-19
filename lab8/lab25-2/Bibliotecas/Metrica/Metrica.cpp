@@ -26,12 +26,13 @@ void Metrica::set_id(int id) {
     this->id = id;
 }
 
-const char * Metrica::get_descripcion() const {
+string Metrica::get_descripcion() const {
     return descripcion;
 }
-void Metrica::set_descripcion(const char *descripcion) {
-    copiarCadena(this->descripcion,descripcion);
+void Metrica::set_descripcion(const string &descripcion) {
+    this->descripcion = descripcion;
 }
+
 
 int Metrica::get_fecha_calculo() const {
     return fecha_calculo;
@@ -56,11 +57,12 @@ void Metrica::set_estado(bool estado) {
 //
 ifstream& Metrica::leer(ifstream &arch) {
     int idMetrica,fechaCalculo,fechaExpiracion,aa,mm,dd,aaE,mmE,ddE;
-    char descripcionMetrica[100],car;
+    string descripcionMetrica;
+    char car;
 
     if (arch>>idMetrica) {
         arch.get();
-        arch.getline(descripcionMetrica,100,',');
+        getline(arch,descripcionMetrica,',');
         arch>>aa>>car>>mm>>car>>dd>>car>>aaE>>car>>mmE>>car>>ddE;
         fechaCalculo=aa*10000+mm*100+dd;
         fechaExpiracion=aaE*10000+mmE*100+ddE;
@@ -93,6 +95,7 @@ void Metrica::copiarCadena(char *&destino,const char *origen) {
     destino=new char[strlen(origen)+1];
     strcpy(destino,origen);
 }
+
 //
 Metrica& Metrica::operator=(const Metrica &origin) {
     if (this!=&origin) {
@@ -106,9 +109,8 @@ Metrica& Metrica::operator=(const Metrica &origin) {
 }
 
 //destructor
-Metrica::~Metrica() {
-    delete [] descripcion;
-}
+Metrica::~Metrica() = default;
+//
 ifstream& operator>> (ifstream &arch, Metrica &metrica) {
     return metrica.leer(arch);
 }

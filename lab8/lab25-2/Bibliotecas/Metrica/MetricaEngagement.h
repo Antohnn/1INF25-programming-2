@@ -24,6 +24,8 @@ public:
     int get_clips_generados() const;
     void set_clips_generados(int clips_generados);
     //
+    TipoMetrica getTipo() const override;
+    //
     ifstream& leer(ifstream &) override;
     ofstream& imprimir(ofstream &) const override;
     //

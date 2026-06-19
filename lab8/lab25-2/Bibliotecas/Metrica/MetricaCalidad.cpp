@@ -36,6 +36,10 @@ void MetricaCalidad::set_fps_promedio(int fps_promedio) {
     this->fps_promedio = fps_promedio;
 }
 //
+TipoMetrica MetricaCalidad::getTipo() const {
+    return CALIDAD;
+}
+//
 ifstream& MetricaCalidad::leer(ifstream &arch) {
     if (!Metrica::leer(arch)) {
         return arch;

@@ -6,9 +6,12 @@
 #define LAB25_2_METRICA_H
 
 #include <fstream>
+
+#include "enum.h"
+
 class Metrica {
     int id;
-    char *descripcion;
+    string descripcion;
     int fecha_calculo;
     int fecha_expiracion;
     bool estado;
@@ -19,8 +22,8 @@ public:
     int get_id() const;
     void set_id(int id);
 
-    const char * get_descripcion() const;
-    void set_descripcion(const char *descripcion);
+    string get_descripcion() const;
+    void set_descripcion(const string &descripcion);
 
     int get_fecha_calculo() const;
     void set_fecha_calculo(int fecha_calculo);
@@ -35,6 +38,7 @@ public:
     virtual ofstream& imprimir(ofstream &) const;
     //
     void copiarCadena(char *&,const char *);
+    virtual TipoMetrica getTipo() const = 0;
     //
     Metrica& operator=(const Metrica &);
     //destructor
