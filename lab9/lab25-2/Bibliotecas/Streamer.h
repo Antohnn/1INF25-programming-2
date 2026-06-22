@@ -13,6 +13,7 @@
 
 #include "Categoria.h"
 #include "Etiqueta.h"
+#include "Comentario.h"
 using namespace std;
 using coment=string;
 
@@ -25,7 +26,7 @@ class Streamer {
     string idioma;
     vector<coment> comentarios;
 
-    Categoria& buscarCategoria(string &codCateStreamer);
+
 public:
     Streamer();
     Streamer(const Streamer &);
@@ -41,13 +42,22 @@ public:
 
     string get_idioma() const;
     void set_idioma(const string &idioma);
+
+    string get_codCategoria() const;
+    void set_Categoria(const Categoria &categoria);
+    void agregarEtiqueta(const Etiqueta &);
+    void agregarComentario(const string &comentario);
     //
     ifstream& leer(ifstream &);
     ofstream& imprimir(ofstream &);
-
+    //operador de asignacion
+    Streamer& operator= (const Streamer &);
+    bool operator< (const Streamer &) const;
     //destructor
     ~Streamer();
 };
+ifstream& operator>> (ifstream &, Streamer &);
+ofstream& operator<< (ofstream &, Streamer &);
 
 
 #endif //LAB25_2_STREAMER_H

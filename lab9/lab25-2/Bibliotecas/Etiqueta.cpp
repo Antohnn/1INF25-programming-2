@@ -29,10 +29,15 @@ ifstream& Etiqueta::leer(ifstream &arch) {
     string codEtiqueta,nombEtiqueta;
     getline(arch,codEtiqueta,',');
     getline(arch,nombEtiqueta);
+
+    this->set_codigo(codEtiqueta);
+    this->set_nombre(nombEtiqueta);
+
     return arch;
 }
 ofstream& Etiqueta::imprimir(ofstream &archRep) {
-    archRep<<left<<setw(20)<<"CODIGO: "<<this->get_codigo()<<setw(20)<<"NOMBRE: "<<this->get_nombre()<<endl;
+    archRep<<left<<setw(10)<<"CODIGO: "<<setw(20)<<this->get_codigo()<<setw(10);
+    archRep<<"NOMBRE: "<<setw(20)<<this->get_nombre()<<right<<endl;
     return archRep;
 }
 //

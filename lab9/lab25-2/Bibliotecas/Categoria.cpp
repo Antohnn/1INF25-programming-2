@@ -39,6 +39,10 @@ ifstream& Categoria::leer(ifstream &arch) {
     getline(arch,nombCate,',');
     getline(arch,descrCate);
 
+    this->set_codigo(codCate);
+    this->set_nombrea(nombCate);
+    this->set_descripcion(descrCate);
+
     return arch;
 }
 ofstream& Categoria::imprimir(ofstream &archRep) {
@@ -47,6 +51,11 @@ ofstream& Categoria::imprimir(ofstream &archRep) {
     archRep<<"DESCRIPCION: "<<this->get_descripcion()<<endl;
 
     return archRep;
+}
+
+//
+bool Categoria::operator<(const Categoria &cate) const {
+    return this->get_codigo()<cate.get_codigo();
 }
 //
 Categoria &Categoria::operator=(const Categoria &origin) {

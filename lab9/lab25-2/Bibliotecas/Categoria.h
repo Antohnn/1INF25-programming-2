@@ -29,7 +29,9 @@ public:
     void set_descripcion(const string &descripcion);
     //
     ifstream& leer(ifstream &);
-    ofstream& imprimir(ofstream &);
+    ofstream& imprimir(ofstream &) ;
+    //sobrecarga para realizae el sort de  la lista con STL
+    bool operator<(const Categoria &) const;
     //
     Categoria &operator=(const Categoria &);
     //destructor

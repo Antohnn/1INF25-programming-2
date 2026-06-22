@@ -28,11 +28,12 @@ public:
     ofstream& imprimir(ofstream &);
     //
     Comentario& operator =(const Comentario &);
+    bool operator<(Comentario & ) const;
     //destructor
     ~Comentario();
 };
-ifstream& operator>> (ifstream &, ifstream &);
-ofstream& operator<< (ofstream &, ofstream &);
+ifstream& operator>> (ifstream &, Comentario &);
+ofstream& operator<< (ofstream &, Comentario &);
 
 
 #endif //LAB25_2_COMENTARIO_H

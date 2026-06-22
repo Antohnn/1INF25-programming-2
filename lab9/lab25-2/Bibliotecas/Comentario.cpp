@@ -29,10 +29,14 @@ ifstream& Comentario::leer(ifstream &arch) {
     string canalComent,comentarioComent;
     getline(arch,canalComent,',');
     getline(arch,comentarioComent);
+
+    this->set_canal(canalComent);
+    this->set_comentario(comentarioComent);
+
     return arch;
 }
 ofstream& Comentario::imprimir(ofstream &archRep) {
-    archRep<<this->get_canal()<<" "<<this->get_comentario()<<endl;
+    archRep<<this->get_comentario()<<endl;
 
     return archRep;
 }
@@ -43,6 +47,9 @@ Comentario& Comentario::operator=(const Comentario &origin) {
         this->set_comentario(origin.get_comentario());
     }
     return *this;
+}
+bool Comentario::operator<(Comentario & coment) const {
+    return this->get_canal()<coment.get_canal();
 }
 //destructor
 Comentario::~Comentario()= default;
