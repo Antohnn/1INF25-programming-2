@@ -29,7 +29,8 @@ public:
     //
     ifstream& leer(ifstream &);
     ofstream& imprimir(ofstream &);
-
+    //
+    bool operator<(const Comentario &)const;
     //destructor
     ~Comentario();
 };

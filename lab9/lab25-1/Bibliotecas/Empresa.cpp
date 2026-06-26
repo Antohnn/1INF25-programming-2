@@ -90,7 +90,7 @@ void Empresa::eliminaInfraccionesPagadas() {
     itMulta=multasRecibidas.begin();
     while (itMulta!=multasRecibidas.end()) {
         if (itMulta->is_pagado()) {
-            multasRecibidas.erase(itMulta);
+            itMulta=multasRecibidas.erase(itMulta);
         }else {
             itMulta++;
         }

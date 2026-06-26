@@ -38,7 +38,10 @@ ofstream& Comentario::imprimir(ofstream &archRep) {
     archRep<<this->get_descripcion()<<endl;
     return archRep;
 }
-
+//
+bool Comentario::operator<(const Comentario &other)const {
+    return this->get_canal() < other.get_canal();
+}
 //destructor
 Comentario::~Comentario() = default;
 

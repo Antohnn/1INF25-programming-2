@@ -31,7 +31,8 @@ public:
     //
     ifstream& leer(ifstream &);
     ofstream& imprimir(ofstream &) const;
-
+    //
+    bool operator<(const Categoria &) const;
     //destructor
     ~Categoria();
 };

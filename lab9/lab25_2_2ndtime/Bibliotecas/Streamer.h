@@ -10,6 +10,8 @@
 #include "Etiqueta.h"
 #include <vector>
 
+#include "Comentario.h"
+
 using coment=string;
 class Streamer {
     string canal;
@@ -35,13 +37,23 @@ public:
 
     string get_idioma() const;
     void set_idioma(const string &idioma);
+
+    string getCodCategoria() const;
+    void setCategoria(Categoria &);
+
+    void agregarComentario(Comentario &) ;
+
+    void agregarEtiqueta(Etiqueta &);
     //
     ifstream& leer(ifstream &);
-
+    ofstream& imprimir(ofstream &);
+    //
+    bool operator<(const Streamer &) const;
     //destructor
     ~Streamer();
-
 };
+ifstream& operator>> (ifstream &, Streamer &);
+ofstream& operator<< (ofstream &, Streamer &);
 
 
 #endif //LAB25_2_2NDTIME_STREAMER_H

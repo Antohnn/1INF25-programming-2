@@ -11,4 +11,6 @@ add_executable(lab25_2_2ndtime main.cpp
         Bibliotecas/Comentario.cpp
         Bibliotecas/Comentario.h
         Bibliotecas/Streamer.cpp
-        Bibliotecas/Streamer.h)
+        Bibliotecas/Streamer.h
+        Bibliotecas/SistemaDeGestion.cpp
+        Bibliotecas/SistemaDeGestion.h)

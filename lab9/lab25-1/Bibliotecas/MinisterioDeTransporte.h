@@ -18,10 +18,11 @@ class MinisterioDeTransporte {
     list<Infraccion> tablaInfracciones;
     list<Empresa> listaEmpresas;
 
-    Empresa *buscarEmpresa(int );
-    void insetarEnMulta(Multa &);
-    Empresa  *insertarMultaEnEmpresa(Multa &nuevo);
+    void insertarVehiculo(int ,Vehiculo &);
+    void insertarMontoEnMulta(Multa &);
+    void insertarMulta(Multa &);
     void ordenarEmpresaMultas();
+
 public:
     void cargaDeInfracciones(const char *);
     void cargaEmpresas(const char *);

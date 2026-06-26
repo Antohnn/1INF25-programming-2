@@ -52,7 +52,10 @@ ofstream& Categoria::imprimir(ofstream &archRep) const {
 
     return archRep;
 }
-
+//
+bool Categoria::operator<(const Categoria &other) const {
+    return this->get_codigo()<other.get_codigo();
+}
 //destructor
 Categoria::~Categoria()= default;
 //
